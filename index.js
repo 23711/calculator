@@ -47,6 +47,22 @@ const stringToNumber = (string, array) => {
         array.push(Number(element))  
     }
 }
+const printScreen = (value)=> {
+    if(value === undefined){
+        screen.value = "Error"
+        return
+    }
+    if(value === NaN){
+        screen.value = "Error"
+        return
+    } else {
+        screen.value = value;
+    }
+
+}
+const clear = () => {
+    screen.value = ""
+}
 const equalTo = ()=>{
     let stringOperation = screen.value;
     let resultOfOperator = chooseOperation(stringOperation);
@@ -54,7 +70,7 @@ const equalTo = ()=>{
     let arrayOfNumbers = []
     stringToNumber(stringOperation,arrayOfNumbers)
     let answer = doOperation(arrayOfNumbers[0],arrayOfNumbers[1],resultOfOperator);
-    screen.value = answer;
+    printScreen(answer);
 }
 
 const screen = document.querySelector(".screen");
@@ -62,6 +78,7 @@ const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".arithmetic");
 const del = document.querySelector(".del");
 const equal = document.querySelector(".equal");
+const clearButton = document.querySelector(".clear");
 
 
 numbers.forEach((element)=>{
@@ -75,3 +92,5 @@ operators.forEach((element)=>{
 del.addEventListener("click", deleteNumber);
 
 equal.addEventListener("click", equalTo);
+
+clearButton.addEventListener("click", clear);
